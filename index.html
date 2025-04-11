@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>We Will Miss You</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #ffe6f0, #ffffff);
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      color: #d63384;
+      margin-top: 30px;
+      font-size: 3em;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h2 {
+      text-align: center;
+      color: #555;
+      margin-top: 10px;
+      font-size: 2em;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    #countdown {
+      text-align: center;
+      font-size: 2em;
+      color: #333;
+      margin: 10px 0 20px;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .floating {
+      position: absolute;
+      font-size: 2em;
+      opacity: 0;
+      animation: float 12s infinite linear, fadeEmoji 3s ease-in forwards;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(50px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeEmoji {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .description {
+      padding: 20px;
+      text-align: center;
+      font-size: 1.2em;
+      color: #444;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 100px;
+      font-size: 1.5em;
+      color: #555;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    audio {
+      display: block;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>We miss you and never forget you</h1>
+  <h2>The Closing of Graduation</h2>
+  <div id="countdown">Loading countdown...</div>
+
+  <!-- Background Music -->
+  <audio id="bgmusic" autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Floating Emojis -->
+  <script>
+    const emojis = ['❤️', '😢'];
+    for (let i = 0; i < 40; i++) {
+      const emoji = document.createElement('div');
+      emoji.className = 'floating';
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.fontSize = (Math.random() * 1.5 + 1) + 'em';
+      emoji.style.animationDelay = Math.random() * 12 + 's';
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      document.body.appendChild(emoji);
+    }
+  </script>
+
+  <!-- Countdown Script -->
+  <script>
+    const countdown = document.getElementById('countdown');
+    const targetDate = new Date("April 14, 2025 15:43:00").getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        countdown.innerHTML = "Time's up. We miss you!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+  <!-- Scroll Content -->
+  <div class="description">
+    <p>Though we now go our separate ways,
+our hearts remain linked by memories and moments shared.
+We laughed, learned, and grew together —
+and even as we’re unlinked by distance or time,
+you will never be forgotten.
+This is not the end... just a new beginning.
+We will always remember you,
+our dear classmates and teachers.
+Goodbye… but never goodbye in our hearts.</p>
+    <p>Created by Eman jhay & chatgpt for helping the code of this website</p>
+  </div>
+
+  <div class="footer">Goodbye classmates and teacher</div>
+
+</body>
+</html>
